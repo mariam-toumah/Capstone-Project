@@ -10,6 +10,7 @@ import SwiftUI
 struct MonsoraTest: View {
     var body: some View {
         Text("Hello, Monsora!")
+        Text("Hello, Joy!")
     }
 }
 
