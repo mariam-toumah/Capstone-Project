@@ -10,6 +10,7 @@ import SwiftUI
 struct ConditionsView: View {
     
     @Binding var profile: MedicalProfile
+    @Environment(\.dismiss) private var dismiss
     
     @State private var editedConditions: [String]
     @State private var newCondition = ""
@@ -59,6 +60,7 @@ struct ConditionsView: View {
             
             Button("Save & Exit") {
                 profile.conditions = editedConditions
+                dismiss()
             }
             .padding()
         }

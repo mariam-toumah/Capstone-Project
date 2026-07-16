@@ -10,13 +10,9 @@ import SwiftUI
 struct PersonalInfoView: View {
     
     @Binding var profile: MedicalProfile
-    @State private var editedProfile: MedicalProfile
+    @Environment(\.dismiss) private var dismiss
     
-    init(profile: Binding<MedicalProfile>) {
-        self._profile = profile
-        self._editedProfile = State(initialValue: profile.wrappedValue)
-    }
-    
+   
     var body: some View {
         
         Form {
@@ -41,8 +37,7 @@ struct PersonalInfoView: View {
             
             
             Button("Save & Exit") {
-                
-                profile = editedProfile
+                dismiss()
             }
         }
         .navigationTitle("Personal Information")

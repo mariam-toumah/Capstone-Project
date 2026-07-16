@@ -10,8 +10,8 @@ import SwiftUI
 struct AddMedicationView: View {
     
     @Binding var profile: MedicalProfile
-    
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) private var dismiss
+
     
     @State private var name = ""
     @State private var dosage = ""
@@ -50,3 +50,4 @@ struct AddMedicationView: View {
             .navigationTitle("New Medication")
         }
     }
+}

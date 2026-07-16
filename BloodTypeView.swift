@@ -10,6 +10,7 @@ import SwiftUI
 struct BloodTypeView: View {
     
     @Binding var profile: MedicalProfile
+    @Environment(\.dismiss) private var dismiss
     
     let bloodTypes = [
         "A+",
@@ -43,8 +44,8 @@ struct BloodTypeView: View {
             
             
             Button("Save & Exit") {
-                
-            }
+                dismiss()
+            }            
         }
         .navigationTitle("Blood Type")
     }

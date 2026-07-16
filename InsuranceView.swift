@@ -10,6 +10,7 @@ import SwiftUI
 struct InsuranceView: View {
     
     @Binding var profile: MedicalProfile
+    @Environment(\.dismiss) private var dismiss
     
     @State private var editedProvider: String
     @State private var editedID: String
@@ -42,11 +43,11 @@ struct InsuranceView: View {
             
             
             Button("Save & Exit") {
-                
                 profile.insuranceProvider = editedProvider
                 profile.insuranceID = editedID
+                dismiss()
             }
         }
-        .navigationTitle("Insurance")
+        .navigationTitle("New Medication")
     }
 }

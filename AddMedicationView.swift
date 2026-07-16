@@ -10,7 +10,6 @@ import SwiftUI
 struct AddMedicationView: View {
     
     @Binding var profile: MedicalProfile
-    
     @Environment(\.dismiss) var dismiss
     
     @State private var name = ""

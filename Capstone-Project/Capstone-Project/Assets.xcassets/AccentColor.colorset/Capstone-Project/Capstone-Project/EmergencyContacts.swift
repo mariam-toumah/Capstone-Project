@@ -10,6 +10,23 @@ import SwiftUI
 struct EmergencyContactsView: View {
     
     @Binding var profile: MedicalProfile
+    @Environment(\.dismiss) private var dismiss
+    
+    @State private var editedContact1: EmergencyContact
+    @State private var editedContact2: EmergencyContact
+    
+    
+    init(profile: Binding<MedicalProfile>) {
+        self._profile = profile
+        
+        self._editedContact1 = State(
+            initialValue: profile.wrappedValue.emergencyContact1
+        )
+        
+        self._editedContact2 = State(
+            initialValue: profile.wrappedValue.emergencyContact2
+        )
+    }
     
     
     var body: some View {
@@ -18,26 +35,25 @@ struct EmergencyContactsView: View {
             
             Section("Emergency Contact 1") {
                 
-                TextField("Name", text: $profile.emergencyContact1.name)
-                TextField("Phone Number", text: $profile.emergencyContact1.phoneNumber)
-                TextField("Email", text: $profile.emergencyContact1.email)
-                TextField("Address", text: $profile.emergencyContact1.address)
-                TextField("Relationship", text: $profile.emergencyContact1.relationship)
+                TextField("Name", text: $editedContact1.name)
+                TextField("Phone", text: $editedContact1.phoneNumber)
+                TextField("Email", text: $editedContact1.email)
+                TextField("Address", text: $editedContact1.address)
+                TextField("Relationship", text: $editedContact1.relationship)
             }
             
             
             Section("Emergency Contact 2") {
                 
-                TextField("Name", text: $profile.emergencyContact2.name)
-                TextField("Phone Number", text: $profile.emergencyContact2.phoneNumber)
-                TextField("Email", text: $profile.emergencyContact2.email)
-                TextField("Address", text: $profile.emergencyContact2.address)
-                TextField("Relationship", text: $profile.emergencyContact2.relationship)
+                TextField("Name", text: $editedContact2.name)
+                TextField("Phone", text: $editedContact2.phoneNumber)
+                TextField("Email", text: $editedContact2.email)
+                TextField("Address", text: $editedContact2.address)
+                TextField("Relationship", text: $editedContact2.relationship)
             }
             
-            
             Button("Save & Exit") {
-                
+                dismiss()
             }
         }
         .navigationTitle("Emergency Contacts")

@@ -7,9 +7,10 @@
 
 import SwiftUI
 
-struct EmergencyContactView: View {
+struct EmergencyContactsView: View {
     
     @Binding var profile: MedicalProfile
+    @Environment(\.dismiss) private var dismiss
     
     @State private var editedContact1: EmergencyContact
     @State private var editedContact2: EmergencyContact
@@ -51,11 +52,8 @@ struct EmergencyContactView: View {
                 TextField("Relationship", text: $editedContact2.relationship)
             }
             
-            
             Button("Save & Exit") {
-                
-                profile.emergencyContact1 = editedContact1
-                profile.emergencyContact2 = editedContact2
+                dismiss()
             }
         }
         .navigationTitle("Emergency Contacts")

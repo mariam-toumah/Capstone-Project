@@ -10,6 +10,7 @@ import SwiftUI
 struct AllergiesView: View {
     
     @Binding var profile: MedicalProfile
+    @Environment(\.dismiss) private var dismiss
     
     @State private var editedAllergies: [String]
     @State private var newAllergy = ""
@@ -55,6 +56,7 @@ struct AllergiesView: View {
             
             Button("Save & Exit") {
                 profile.allergies = editedAllergies
+                dismiss()
             }
             .padding()
         }

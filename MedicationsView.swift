@@ -10,6 +10,7 @@ import SwiftUI
 struct MedicationsView: View {
     
     @Binding var profile: MedicalProfile
+    @Environment(\.dismiss) private var dismiss
     
     @State private var showingAddMedication = false
     
@@ -80,7 +81,7 @@ struct MedicationsView: View {
             
             
             Button("Save & Exit") {
-                
+                dismiss()
             }
             .padding()
         }
@@ -89,4 +90,5 @@ struct MedicationsView: View {
         }
         .navigationTitle("Medications")
     }
+    
 }
