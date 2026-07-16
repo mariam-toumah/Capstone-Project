@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    @State private var profile = MedicalProfile()
     @State private var name = "Tap Edit/View to add"
     @State private var phone = "___-___-____"
     
@@ -29,7 +31,7 @@ struct HomeView: View {
                             .fill(Color.blue.opacity(0.15))
                             .frame(width: 120, height: 120)
                         
-                        Image(systemName: "person,fill")
+                        Image(systemName: "person.fill")
                             .font(.system(size:55))
                             .foregroundStyle(.blue)
                         
@@ -43,67 +45,71 @@ struct HomeView: View {
                                     .font(.system(size:14))
                             }
                     }
-                        
-                        
-                    }
+                    
+                    
+                }
+            }
+            
+            // Information Card
+            VStack(alignment: .leading, spacing: 30) {
+                
+                Text("Personal Information")
+                    .font(.headline)
+                
+                
+                InfoRow(title: "Name", value: name)
+                
+                Divider()
+                
+                InfoRow(title: "Phone", value: phone)
+                
+                Divider()
+                
+                Text("Medical Information")
+                    .font(.headline)
+                
+                VStack(alignment: .leading, spacing: 8) {
+                    
+                    Text("Allergies")
+                        .fontWeight(.semibold)
+                    
+                    Text(allergies)
+                        .foregroundStyle(.secondary)
+                    
                 }
                 
-                // Information Card
-                VStack(alignment: .leading, spacing: 30) {
+                
+                Divider()
+                
+                VStack(alignment: .leading, spacing: 8) {
                     
-                    Text("Personal Information")
-                        .font(.headline)
+                    Text("Medical Conditions")
+                        .fontWeight(.semibold)
                     
-                    
-                    InfoRow(title: "Name", value: name)
-                    
-                    Divider()
-                    
-                    InfoRow(title: "Phone", value: phone)
-                    
-                    Divider()
-                    
-                    Text("Medical Information")
-                        .font(.headline)
-                    
-                    VStack(alignment: .leading, spacing: 8) {
-                        
-                        Text("Allergies")
-                            .fontWeight(.semibold)
-                        
-                        Text(allergies)
-                            .foregroundStyle(.secondary)
-                        
-                    }
-                    
-                    
-                    Divider()
-                    
-                    VStack(alignment: .leading, spacing: 8) {
-                        
-                        Text("Medical Conditions")
-                            .fontWeight(.semibold)
-                        
-                        Text(conditions)
-                            .foregroundStyle(.secondary)
-                    }
+                    Text(conditions)
+                        .foregroundStyle(.secondary)
                 }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color(.systemGray6))
-                .clipShape(RoundedRectangle(cornerRadius: 25))
-                 
-                Spacer ()
-                
-                
+            }
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(Color(.systemGray6))
+            .clipShape(RoundedRectangle(cornerRadius: 25))
+            
+            Spacer ()
+            
+            
             NavigationLink {
-                
-                
                 EditProfileView(profile: $profile)
             } label: {
                 Text("Edit/View")
             }
-                    
+            
+            Spacer()
+        }
+        .padding()
+    }
+}
+            
         
                     
       //Reusable Row

@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var profile = MedicalProfile()
     @State private var name = "Tap Edit/View to add"
     @State private var phone = "___-___-____"
     
@@ -97,29 +98,19 @@ struct HomeView: View {
                 Spacer ()
                 
                 
-                NavigationLink {
-                    
-                    
-                    EditProfileView()
-                    
-                } label: {
-                    Text ("Edit / View")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.yellow)
-                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                }
-                .padding(.horizontal)
+            
+            NavigationLink {
+                EditProfileView(profile: $profile)
+            } label: {
+                Text("Edit/View")
             }
-            .padding()
-            .navigationBarHidden(true)
             
             
+            Spacer()
         }
+        .padding()
     }
-            
+}
       //Reusable Row
 struct InfoRow: View {
     

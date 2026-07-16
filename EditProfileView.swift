@@ -30,7 +30,7 @@ struct EditProfileView: View {
             
             
             NavigationLink {
-                EmergencyContactsView(profile: $profile)
+                MedicalInfoView(profile: $profile)
             } label: {
                 SectionButton(title: "Medical Information")
             }
