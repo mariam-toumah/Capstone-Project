@@ -21,10 +21,9 @@ struct MedicalProfile {
     
     // Medical Information
     var bloodType: String = ""
-    var allergies: String = ""
-    var medications: String = ""
-    var conditions: String = ""
-    
+    var allergies: [String] = []
+    var medications: [Medication] = []
+    var conditions: [String] = []
     
     // Insurance
     var insuranceProvider: String = ""
@@ -36,7 +35,11 @@ struct MedicalProfile {
     var emergencyContact2 = EmergencyContact()
 }
 
-
+struct Medication {
+    var name: String = ""
+    var dosage: String = ""
+    var frequency: String = ""
+}
 
 struct EmergencyContact {
     
@@ -45,4 +48,14 @@ struct EmergencyContact {
     var email: String = ""
     var address: String = ""
     var relationship: String = ""
+}
+
+
+struct EmergencyContacts {
+    var name: String = ""
+    var phoneNumber: String = ""
+    var email: String = ""
+    var address: String = ""
+    var relationship: String = ""
+}
 }
