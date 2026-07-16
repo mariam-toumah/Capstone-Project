@@ -25,10 +25,16 @@ struct ReviewInfoView: View {
             
             Section("Medical Information") {
                 Text("Blood Type: \(profile.bloodType)")
-                Text("Allergies: \(profile.allergies)")
-                Text("Conditions: \(profile.conditions)")
-                Text("Medications: \(profile.medications)")
-            }
+                Text("Allergies: \(profile.allergies.joined(separator: ", "))")
+                Text("Conditions: \(profile.conditions.joined(separator: ", "))")
+                     
+                     Section("Medications") {
+                         
+                         ForEach(profile.medications.indices, id: \.self) { index in
+                             
+                             Text("\(profile.medications[index].name) - \(profile.medications[index].dosage) - \(profile.medications[index].frequency)")
+                         }
+                     }            }
             
             
             Section("Emergency Contacts") {
