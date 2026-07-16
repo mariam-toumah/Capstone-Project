@@ -108,7 +108,7 @@ struct HomeView: View {
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color.blue)
+                        .background(Color.yellow)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                 }
                 .padding(.horizontal)
