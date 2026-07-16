@@ -10,7 +10,12 @@ import SwiftUI
 struct PersonalInfoView: View {
     
     @Binding var profile: MedicalProfile
+    @State private var editedProfile: MedicalProfile
     
+    init(profile: Binding<MedicalProfile>) {
+        self._profile = profile
+        self._editedProfile = State(initialValue: profile.wrappedValue)
+    }
     
     var body: some View {
         
@@ -18,7 +23,8 @@ struct PersonalInfoView: View {
             
             Section("Personal Information") {
                 
-                TextField("Name", text: $profile.name)
+                TextField("Name", text: $editedprofile.name)
+                
                 
                 TextField("Phone Number", text: $profile.phoneNumber)
                     .keyboardType(.phonePad)
@@ -37,6 +43,7 @@ struct PersonalInfoView: View {
             
             Button("Save & Exit") {
                 
+                profile = editedProfile
             }
         }
         .navigationTitle("Personal Information")

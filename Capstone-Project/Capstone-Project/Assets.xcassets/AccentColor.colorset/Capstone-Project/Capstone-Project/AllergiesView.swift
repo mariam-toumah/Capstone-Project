@@ -10,8 +10,14 @@ import SwiftUI
 struct AllergiesView: View {
     
     @Binding var profile: MedicalProfile
+    
+    @State private var editedAllergies: [String]
     @State private var newAllergy = ""
     
+    init(profile: Binding<MedicalProfile>) {
+        self._profile = profile
+        self._editedAllergies = State(initialValue: profile.wrappedValue.allergies)
+    }
     
     var body: some View {
         
@@ -24,13 +30,12 @@ struct AllergiesView: View {
             
             List {
                 
-                ForEach(profile.allergies, id: \.self) { allergy in
+                ForEach(editedAllergies, id: \.self) { allergy in
                     
                     Text(allergy)
                 }
                 .onDelete { index in
-                    
-                    profile.allergies.remove(atOffsets: index)
+                    editedAllergies.remove(atOffsets: index)
                 }
                 
                 
@@ -41,16 +46,15 @@ struct AllergiesView: View {
                     Button("+") {
                         
                         if !newAllergy.isEmpty {
-                            profile.allergies.append(newAllergy)
+                            editedAllergies.append(newAllergy)
                             newAllergy = ""
                         }
                     }
                 }
             }
             
-            
             Button("Save & Exit") {
-                
+                profile.allergies = editedAllergies
             }
             .padding()
         }

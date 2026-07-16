@@ -10,7 +10,15 @@ import SwiftUI
 struct ConditionsView: View {
     
     @Binding var profile: MedicalProfile
+    
+    @State private var editedConditions: [String]
     @State private var newCondition = ""
+    
+    
+    init(profile: Binding<MedicalProfile>) {
+        self._profile = profile
+        self._editedConditions = State(initialValue: profile.wrappedValue.conditions)
+    }
     
     
     var body: some View {
@@ -20,17 +28,17 @@ struct ConditionsView: View {
             Text("Medical Conditions")
                 .font(.title)
                 .bold()
+                .padding()
             
             
             List {
                 
-                ForEach(profile.conditions, id: \.self) { condition in
+                ForEach(editedConditions, id: \.self) { condition in
                     
                     Text(condition)
                 }
                 .onDelete { index in
-                    
-                    profile.conditions.remove(atOffsets: index)
+                    editedConditions.remove(atOffsets: index)
                 }
                 
                 
@@ -41,7 +49,7 @@ struct ConditionsView: View {
                     Button("+") {
                         
                         if !newCondition.isEmpty {
-                            profile.conditions.append(newCondition)
+                            editedConditions.append(newCondition)
                             newCondition = ""
                         }
                     }
@@ -50,7 +58,7 @@ struct ConditionsView: View {
             
             
             Button("Save & Exit") {
-                
+                profile.conditions = editedConditions
             }
             .padding()
         }

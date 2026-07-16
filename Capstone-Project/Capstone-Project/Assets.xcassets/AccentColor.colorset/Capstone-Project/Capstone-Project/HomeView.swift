@@ -8,8 +8,12 @@
 
 import SwiftUI
 
+import PhotosUI
+
 struct HomeView: View {
+    @State private var showPhotoPicker = false
     @State private var profile = MedicalProfile()
+    
     @State private var name = "Tap Edit/View to add"
     @State private var phone = "___-___-____"
     
@@ -31,9 +35,21 @@ struct HomeView: View {
                             .fill(Color.blue.opacity(0.15))
                             .frame(width: 120, height: 120)
                         
-                        Image(systemName: "person,fill")
-                            .font(.system(size:55))
-                            .foregroundStyle(.blue)
+                        if let imageData = profile.profileImage,
+                           let uiImage = UIImage(data: imageData) {
+                            
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 120, height: 120)
+                                .clipShape(Circle())
+                            
+                        } else {
+                            
+                            Image(systemName: "person.fill")
+                                .font(.system(size:55))
+                                .foregroundStyle(.blue)
+                        }
                         
                         Circle()
                             .fill(.blue)
@@ -46,7 +62,9 @@ struct HomeView: View {
                             }
                     }
                         
-                        
+                    .onTapGesture {
+                        showPhotoPicker = true
+                            }
                     }
                 }
                 
@@ -109,6 +127,9 @@ struct HomeView: View {
             Spacer()
         }
         .padding()
+        .sheet(isPresented: $showPhotoPicker) {
+            PhotoPicker(profile: $profile)
+        }
     }
 }
       //Reusable Row

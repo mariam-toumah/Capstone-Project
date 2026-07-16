@@ -50,4 +50,3 @@ struct AddMedicationView: View {
             .navigationTitle("New Medication")
         }
     }
-}

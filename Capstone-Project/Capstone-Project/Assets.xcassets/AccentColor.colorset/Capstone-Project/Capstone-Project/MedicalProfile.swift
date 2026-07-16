@@ -9,6 +9,7 @@ import Foundation
 
 struct MedicalProfile {
     
+    var profileImage: Data? = nil
     // Personal Information
     var name: String = ""
     var phoneNumber: String = ""

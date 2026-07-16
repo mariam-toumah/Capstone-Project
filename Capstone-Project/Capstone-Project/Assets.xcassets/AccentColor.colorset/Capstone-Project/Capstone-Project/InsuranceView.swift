@@ -11,6 +11,16 @@ struct InsuranceView: View {
     
     @Binding var profile: MedicalProfile
     
+    @State private var editedProvider: String
+    @State private var editedID: String
+    
+    
+    init(profile: Binding<MedicalProfile>) {
+        self._profile = profile
+        self._editedProvider = State(initialValue: profile.wrappedValue.insuranceProvider)
+        self._editedID = State(initialValue: profile.wrappedValue.insuranceID)
+    }
+    
     
     var body: some View {
         
@@ -20,19 +30,21 @@ struct InsuranceView: View {
                 
                 TextField(
                     "Insurance Provider",
-                    text: $profile.insuranceProvider
+                    text: $editedProvider
                 )
                 
                 
                 TextField(
                     "Member ID",
-                    text: $profile.insuranceID
+                    text: $editedID
                 )
             }
             
             
             Button("Save & Exit") {
                 
+                profile.insuranceProvider = editedProvider
+                profile.insuranceID = editedID
             }
         }
         .navigationTitle("Insurance")

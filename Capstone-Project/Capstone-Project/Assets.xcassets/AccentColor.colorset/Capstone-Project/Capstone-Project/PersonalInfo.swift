@@ -10,7 +10,12 @@ import SwiftUI
 struct PersonalInfoView: View {
     
     @Binding var profile: MedicalProfile
+    @State private var editedProfile: MedicalProfile
     
+    init(profile: Binding<MedicalProfile>) {
+        self._profile = profile
+        self._editedProfile = State(initialValue: profile.wrappedValue)
+    }
     
     var body: some View {
         
@@ -37,6 +42,7 @@ struct PersonalInfoView: View {
             
             Button("Save & Exit") {
                 
+                profile = editedProfile
             }
         }
         .navigationTitle("Personal Information")
