@@ -9,17 +9,17 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var name = "Tap View/Edit to add"
+    @State private var name = "Tap Edit/View to add"
     @State private var phone = "___-___-____"
     
-    @State private var allergies = "Tap View/Edit to add"
-    @State private var conditions = "Tap View/Edit to add"
+    @State private var allergies = "Tap Edit/View to add"
+    @State private var conditions = "Tap Edit/View to add"
     
     var body: some View {
         NavigationStack {
-            VStack(spacing:30) {
+            VStack(spacing: 35) {
                 
-                VStack(spacing: 5) {
+                VStack(spacing: 8) {
                     Text ("ReadyMed")
                         .font(.largeTitle)
                         .fontWeight(.bold)
@@ -36,7 +36,7 @@ struct HomeView: View {
                         
                         Circle()
                             .fill(.blue)
-                            .frame(width: 34, height: 34)
+                            .frame(width: 34, height: 32)
                             .overlay {
                                 
                                 Image(systemName: "pencil")
@@ -50,7 +50,7 @@ struct HomeView: View {
                 }
                 
                 // Information Card
-                VStack(alignment: .leading, spacing: 20) {
+                VStack(alignment: .leading, spacing: 30) {
                     
                     Text("Personal Information")
                         .font(.headline)
