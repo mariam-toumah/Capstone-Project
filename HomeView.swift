@@ -96,29 +96,16 @@ struct HomeView: View {
                 Spacer ()
                 
                 
-                NavigationLink {
-                    
-                    
-                    EditProfileView()
-                    
-                } label: {
-                    Text ("Edit / View")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.blue)
-                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                }
-                .padding(.horizontal)
+            NavigationLink {
+                
+                
+                EditProfileView(profile: $profile)
+            } label: {
+                Text("Edit/View")
             }
-            .padding()
-            .navigationBarHidden(true)
-            
-            
-        }
-    }
-            
+                    
+        
+                    
       //Reusable Row
 struct InfoRow: View {
     
